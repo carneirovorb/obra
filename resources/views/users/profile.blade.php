@@ -1,0 +1,48 @@
+@extends('layouts.app')
+@section('content')
+<h5 class="center">Editar meus dados</h5>
+<div class="registerBox">
+    <form method="POST"  autocomplete="off" action="{{ url('/users/' .$user->id. '/profile') }}">
+        {{ csrf_field() }}
+        {{method_field('PUT')}}
+        <div class="row">
+            <div class="input-field">
+                <i class="material-icons prefix validate">account_circle</i>
+                <input placeholder="Nome do Usuário" value="{{$user->name}}" type="text" name="name" />
+                <label for="name">Nome</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <i class="material-icons prefix validate">email</i>
+                <input placeholder="Entre com o email" value="{{$user->email}}" type="email" name="email" value="">
+                <label for="email" data-error="Formato de email inválido">Email</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <i class="material-icons prefix validate">account_circle</i>
+                <input placeholder="CPF do usúario" value="{{$user->cpf}}" type="text" name="cpf" required pattern=".{11, 15}" title="O CPF fornecido deve conter 15 digitos"/>
+                <label for="cpf">CPF</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <i class="material-icons prefix validate">vpn_key</i>
+                <input placeholder="Opcional" type="password" name="password" pattern=".{4,16}" title="A senha deve ter entre 4 e 10 caracteres">
+                <label for="password" data-error="">Nova senha</label>
+            </div>
+        </div>
+
+        <br>
+
+        <button class="btn waves-effect waves-light" type="submit" name="action">Atualizar Informações
+            <i class="material-icons right">add</i>
+        </button>
+    </form>
+</div>
+<br><br><br>
+@endsection

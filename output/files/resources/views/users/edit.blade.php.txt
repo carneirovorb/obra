@@ -1,0 +1,22 @@
+@extends('layouts.app')
+@section('content')
+
+<style>
+	.backBox{
+		display: block;
+	}
+</style>
+
+<h5 class="center">Editar Usuário {{$user->name}}</h5>
+
+<div class="registerBox">
+	<form method="post"  autocomplete="off" action="{{ url('/users/' .$user->id) }}">
+		{{ csrf_field() }}
+		{{method_field('PUT')}}
+		@include('users.form')
+		<button class="btn waves-effect waves-light" type="submit" name="action">Salvar edições
+		</button>
+	</form>
+</div>
+@endsection
+

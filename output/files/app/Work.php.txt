@@ -1,0 +1,124 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Work extends Model
+{
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['id',
+            'user_id',
+            'name',
+            'contract',
+            'siconv',
+            'siafi',
+            'year',
+            'action',
+            'value',
+            'value_free',
+            'status',
+            'ult_medition',
+            'object',
+            'status_contract',
+            'adjudication',
+
+            'propose_number',
+            'account_repass',
+            'repass_value',
+            'organ',
+            'convain_vigence',
+            'position',
+            'execution_fis',
+            'execution_finan',
+
+            'licitation_number',
+            'spreadsheet_winner',
+            'edital_publication',
+            'homologation',
+            'declaration',
+            'publication',
+
+            'company',
+            'cnpj',
+            'assignature_date',
+            'vigence_company',
+            'term_additive',
+            'counterpart_value',
+            'original_number',
+            'super_organ',
+            'grantor',
+            'vigence_init',
+            'vigence_end',
+            'convain_publication',
+
+            'bond',
+            'prefecture',
+            'type_work'
+    ];
+
+    /**
+     * Return permissions to work.
+     *
+     * @return Collection
+     */
+    public function permissions()
+    {
+        return $this->belongsTo('App\Permission');
+    }
+    
+    /**
+     * Return account to work.
+     *
+     * @return Collection
+     */
+    public function account()
+    {
+        return $this->hasOne('App\Account');
+    }
+
+    /**
+     * Return transfers to work.
+     *
+     * @return Collection
+     */
+    public function transfers()
+    {
+        return $this->hasMany('App\Transfer');
+    }
+
+    /**
+     * Return users to work, with pivot table.
+     *
+     * @return Collection
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'permissions',  'work_id', 'user_id')->withPivot('type');
+    }
+
+    /**
+     * Return financials to work.
+     *
+     * @return Collection
+     */
+    public function financials()
+    {
+        return $this->hasMany('App\Financial');
+    }
+
+    /**
+     * Return reports to work.
+     *
+     * @return Collection
+     */
+    public function reports()
+    {
+        return $this->hasMany('App\Report');
+    }
+}
+

@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Traits; 
+
+use App\Permission;
+use Auth; 
+
+/**
+ * Trait for controlles Account, Financial, Transfer and Work  
+ *
+ * Business logic.
+ *
+ * @package    amado-eng
+ * @subpackage App\Traits
+ * @author     Lucas Souza <lucas252souza@gmail.com>
+ * @author     Luiz Toni <luiztoni@outlook.com>
+ * @author     Valber Carneiro <valbercarneiro@outlook.com>
+ * @copyright  Copyright (c) 2017, EngenheJr
+ */
+trait CheckPrivilege
+{
+    /**
+     * Get type user access privilege.
+     * 
+     * @param int $work_id
+     * @return int $type
+     */
+    private function privilege(int $work_id) : int 
+    {
+        if (Auth::user()->privilege == 2) {
+            $type = 2;
+        } else {
+            $type = Permission::where('work_id', $work_id)->where('user_id',Auth::user()->id)->first()->type;
+        } 
+        return $type;
+    }
+}
+

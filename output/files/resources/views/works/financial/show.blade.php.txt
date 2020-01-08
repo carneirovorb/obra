@@ -1,0 +1,26 @@
+@extends('layouts.app')
+@section('content')
+@include('components.navs.work')
+<div class="center row">
+    <form class="col s12 view">
+        @if(isset($financial))
+            @include('works.financial.form')
+        @endif
+        @if (isset($financial) && $type == 2)
+        <a href="{{url('/works/'.$work_id.'/financial/' . $financial->id . '/edit')}}" class="btn waves-effect waves-light">
+            Editar Resumo
+            <i class="material-icons right">edit</i>
+        </a>
+        @endif
+        @if (!isset($financial) && $type == 2)
+        <a href="{{url('works/'.$work_id.'/financial/create')}}" class="btn waves-effect waves-light">
+            Cadastrar Novo Resumo Financeiro
+            <i class="material-icons right">add</i>
+        </a>
+        @endif
+    </form>
+    <br><br>
+    </div>
+</div>
+@endsection
+

@@ -1,0 +1,44 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateFinancialsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('financials', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('work_id')->unsigned();
+            $table->foreign('work_id')->references('id')->on('works')->onDelete('cascade');
+            $table->integer('n_nf')->nullable();
+            $table->date('emission')->nullable();
+            $table->double('total_value')->nullable();
+            $table->string('dam_iss')->nullable();
+            $table->string('ir')->nullable();
+            $table->string('vlr')->nullable();
+            $table->double('ted_value')->nullable();
+            $table->date('ted_date')->nullable();
+            $table->string('pr')->nullable();
+            $table->string('dli')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('financials');
+    }
+}
+

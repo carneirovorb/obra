@@ -1,0 +1,145 @@
+<?php
+
+namespace App\Repositories;
+
+use Auth;
+use App\Permission;
+use App\Work;
+use App\User;
+
+/**
+ * Work repository implementation  
+ *
+ * Business logic.
+ *
+ * @package    amado-eng
+ * @subpackage App\Repositories
+ * @author     Lucas Souza <lucas252souza@gmail.com>
+ * @author     Luiz Toni <luiztoni@outlook.com>
+ * @author     Valber Carneiro <valbercarneiro@outlook.com>
+ * @copyright  Copyright (c) 2017, EngenheJr
+ */
+class WorkRepository implements Repository
+{
+    /**
+     * Store a newly work and create users permissions.
+     *
+     * @param  array $data
+     */
+    public function create(array $data)
+    {
+        $work = Work::create($data);
+        $users = User::where('id','<>', Auth::user()->id)->where('privilege','<>', 2)->get();
+        foreach ($users as $user) {
+            Permission::create(['work_id'=>$work->id, 'user_id'=>$user->id, 'type'=>0]);
+        }
+        if (Auth::user()->privilege != 2)
+            Permission::create(['work_id'=>$work->id, 'user_id'=>Auth::user()->id, 'type'=>2]);
+        return $work;
+    }
+
+    /**
+     * Find by work.
+     *
+     * @param  int  $id
+     * @return Work
+     */
+    public function read(int $id)
+    {
+        return Work::find($id);
+    }
+    
+    /**
+     * Update work.
+     *
+     * @param  int  $id
+     * @param  array  $data
+     */
+    public function update(int $id, array $data)
+    {
+       $this->read($id)->fill($data)->save();
+    }
+
+    /**
+     * Delete work.
+     *
+     * @param  int  $id
+     */
+    public function delete(int $id)
+    {
+        $this->read($id)->delete();
+    }
+
+    /**
+     * Return all works.
+     *
+     * @return Collection $works
+     */
+    public function all()
+    {
+        if (Auth::user()->privilege == 2) {
+             return Work::all(['id', 'name', 'contract','year','status']);
+        }
+        $works = Auth::user()->works()->where('type','>=',1)->get();
+        return $works;
+    }
+
+    /**
+     * Search by work.
+     *
+     * @param  array  $data
+     * @return Collection $works
+     */
+    public function find(array $data)
+    {
+        if (!isset($data['bond'])) {
+            if (Auth::user()->privilege == 2) {
+                $works = Work::where('name', 'ilike', '%'.$data['search'].'%')->get();
+            } else {
+                $works = Auth::user()->works()->where('type','>=',1)->where('name', 'ilike', '%'.$data['search'].'%')->get();
+            }
+        } else {
+            if (Auth::user()->privilege == 2) {
+                $works = Work::where('name', 'ilike', '%'.$data['search'].'%')->where('bond', $data['bond'])->where('prefecture', $data['prefecture'])->where('type_work', $data['type_work'])->get();
+            } else {
+                $works = Auth::user()->works()->where('type','>=',1)->where('name', 'ilike', '%'.$data['search'].'%')->where('bond', $data['bond'])->where('prefecture', $data['prefecture'])->where('type_work', $data['type_work'])->get();
+            }
+        }
+        //TODO: Implementar outros casos de busca
+        return $works;
+    }
+
+    /**
+     * Return all permissions to work.
+     *
+     * @param  int  $id
+     * @return Collection $permissions
+     */
+    public function editPermissions(int $id)
+    {
+        $permissions = Permission::where('work_id', $id)->where('user_id','<>', Auth::user()->id)->get();
+        return $permissions;
+    }
+
+    /**
+     * Upgrade all users permissions to work.
+     *
+     * @param  int   $work_id
+     * @param  array $users_permissions
+     */
+    public function updatePermissions(int $work_id, array $users_permissions)
+    {
+        $permissions = Permission::where('work_id', $work_id)->where('user_id','<>', Auth::user()->id)->get();
+        foreach ($permissions as $permission) {
+            $permission->delete();
+        }
+
+        foreach ($users_permissions as $user_permission) {
+            $conf = explode(';', $user_permission);
+            if (is_numeric($conf[0])) {
+                Permission::create(['work_id'=>$work_id, 'user_id'=>$conf[0], 'type'=>$conf[1]]);
+            }
+        }
+    }
+}
+

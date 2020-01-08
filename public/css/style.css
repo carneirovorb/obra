@@ -1,0 +1,274 @@
+.ico{
+  width: 150px;
+}
+
+td i {
+  margin-left: 15px;
+}
+
+.section{
+  padding: 20px;
+}
+
+
+.input-field.col label {
+    pointer-events: none;
+}
+
+.backBox{
+  position: absolute;
+width: 100%;
+height: 150px;
+z-index: -1;
+display: none;
+}
+
+.backBox{
+  display: block;
+
+}
+
+.view input[type=text]:disabled{
+  color: #000;
+}
+
+
+.card-login{
+
+    width: 556px;
+    height: 100%;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    padding: 20px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.formEditUser{
+
+  width: 400px;
+  padding-top:20px;
+  margin: 0 auto;
+
+}
+
+
+
+
+h5{
+
+    margin-bottom: 40px;
+}
+
+.registerBox{
+  padding: 30px;
+  border-radius: 3px;
+    width: 80%;
+    margin: 0 auto;
+    background: #fff;
+
+}
+
+hr.style9 {
+	border-top: 1px dashed #8c8b8b;
+	border-bottom: 1px dashed #fff;
+  opacity: .5;
+}
+
+hr.style8 {
+	border-top: 1px solid #8c8b8b;
+	border-bottom: 1px solid #fff;
+  opacity: .5;
+}
+hr.style8:after {
+	content: '';
+	display: block;
+	margin-top: 2px;
+	border-top: 1px solid #8c8b8b;
+	border-bottom: 1px solid #fff;
+}
+hr.style13 {
+	height: 10px;
+	border: 0;
+	box-shadow: 0 10px 10px -10px #8c8b8b inset;
+  opacity: .6;
+}
+
+.container.content{
+  margin-top: 50px;
+  padding: 20px;
+  border-radius: 3px;
+
+  margin-left: auto;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  height: -webkit-calc(100% - 180px);
+  height: -moz-calc(100% - 180px);
+  height: calc(100% - 180px);
+
+}
+
+.container .center.row{
+  margin: 0;
+}
+
+.container.content nav{
+  margin: -20px;
+width: auto;
+margin-bottom: 20px;
+}
+
+footer{
+  z-index: 1;
+}
+
+nav .dropdown-button{
+  min-width: 150px;
+}
+
+.dropdown-content li>a, .dropdown-content li>span {
+    color: #333837;
+    font-size: 14px;
+  }
+
+.dropdown-content li>a>i {
+    margin: 0 10px 0 0;
+}
+
+
+.obrasPermissions .dropdown-button{
+  width: 300px;
+}
+
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.modal input[type=text]:disabled, .modal textarea.materialize-textarea:disabled{
+  color: #000;
+  font-size: 1.2rem
+}
+
+table.obras tbody tr{
+  cursor: pointer;
+}
+
+.modal input[type=text]:disabled+label, .modal textarea.materialize-textarea:disabled+label{
+  color: #000;
+}
+
+input[type=search]{
+        background-color: rgba(0, 0, 0, 0.03);
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    height: 3rem;
+    width: 100%;
+    font-size: 1rem;
+    padding: 0;
+    box-shadow: none;
+    box-sizing: content-box;
+    transition: all 0.3s;
+}
+
+.linkButton{
+
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #039be5;
+    margin: 0;
+    padding: 0;
+
+}
+
+.modalSearch{
+  overflow-y: unset;
+}
+
+.modal.bottom-sheet{
+  max-height: max-content;
+}
+
+
+.menu p label{
+  background: #ffffff;
+  padding: 10px 52px;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+.menu p [type="radio"]+label:before, [type="radio"]+label:after{
+  display: none;
+}
+
+
+.menu p input:hover + label {
+  
+}
+
+.menu p .material-icons{
+  vertical-align: sub;
+  margin-right:15px; 
+}
+
+
+.menu p input:checked + label {
+  background-color:#81c784;
+  color: #fff;
+}
+
+.menu p  [type="radio"]:not(:checked)+label, .menu p [type="radio"]:checked+label{
+  padding: auto;
+  height: auto;
+  width: 100%;
+
+}
+
+.add{
+  color: #000;
+  margin-left: -20px;
+  margin-right: 11px;
+}
+
+.vinculo, .tipo{
+  display: none;
+}
+
+@media screen and (max-width: 1500px) {
+  .container{
+width: 95%;
+
+  }
+}
+
+
+@media screen and (max-width: 1024px){
+
+
+  .modal{
+    width: 100%;
+  }
+
+
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .container{
+width: 100%;
+
+  }
+  .card-login{
+    width: auto;
+  }
+}

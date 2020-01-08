@@ -1,0 +1,83 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateWorksTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('works', function (Blueprint $table) {
+            $table->increments('id');
+
+            $table->integer('user_id')->unsigned()->default(1);
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->string('name')->nullable();
+            $table->string('contract')->nullable();
+            $table->string('siconv')->nullable();
+            $table->string('siafi')->nullable();
+            $table->integer('year')->nullable();
+            $table->string('action')->nullable();
+            $table->double('value')->nullable();
+            $table->double('value_free')->nullable();
+            $table->string('status')->nullable();
+            $table->date('ult_medition')->nullable();
+            $table->text('object')->nullable();
+            $table->string('status_contract')->nullable();
+            $table->date('adjudication')->nullable();
+
+            $table->string('propose_number')->nullable();
+            $table->string('account_repass')->nullable();
+            $table->double('repass_value')->nullable();
+            $table->string('organ')->nullable();
+            $table->date('convain_vigence')->nullable();
+            $table->date('position')->nullable();
+            $table->double('execution_fis')->nullable();
+            $table->double('execution_finan')->nullable();
+
+            $table->string('licitation_number')->nullable();
+            $table->double('spreadsheet_winner')->nullable();
+            $table->date('edital_publication')->nullable();
+            $table->date('homologation')->nullable();
+            $table->string('declaration')->nullable();
+            $table->date('publication')->nullable();
+
+            $table->string('company')->nullable();
+            $table->string('cnpj')->nullable();
+            $table->date('assignature_date')->nullable();
+            $table->date('vigence_company')->nullable();
+            $table->date('term_additive')->nullable();
+            $table->double('counterpart_value')->nullable();
+            $table->string('original_number')->nullable();
+            $table->string('super_organ')->nullable();
+            $table->string('grantor')->nullable();
+            $table->date('vigence_init')->nullable();
+            $table->date('vigence_end')->nullable();
+            $table->date('convain_publication')->nullable();
+
+            $table->string('prefecture')->nullable();
+            $table->string('type_work')->nullable();
+            $table->string('bond')->nullable();
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('works');
+    }
+}
+

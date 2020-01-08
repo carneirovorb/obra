@@ -1,0 +1,70 @@
+<?php
+
+namespace App;
+
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\ResetPasswordNotification;
+use Illuminate\Auth\Passwords\CanResetPassword;
+/**
+ * User model entity  
+ *
+ * @package    amado-eng
+ * @subpackage App
+ * @author     Lucas Souza <lucas252souza@gmail.com>
+ * @author     Luiz Toni <luiztoni@outlook.com>
+ * @author     Valber Carneiro <valbercarneiro@outlook.com>
+ * @copyright  Copyright (c) 2017, EngenheJr
+ */
+class User extends Authenticatable
+{
+    use Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'cpf' ,'email', 'password', 'privilege'
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    /**
+     * Return permissions to user.
+     *
+     * @return Collection
+     */
+    public function permissions()
+    {
+        return $this->belongsTo('App\Permission');
+    }
+
+    /**
+     * Return works to user, with pivot table.
+     *
+     * @return Collection
+     */
+    public function works() 
+    {
+        return $this->belongsToMany('App\Work', 'permissions', 'user_id','work_id')->withPivot('type');
+    }
+
+    /**
+     * Send email to password recovery.
+     *
+     * @param $token
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
+}

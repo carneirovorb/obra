@@ -1,0 +1,35 @@
+Models: Inglês -> Português
+
+AgreementDetails -> Detalhes do Convenio
+CashierSummary -> Resumo do Caixa
+Work -> Tabela de Obras
+ConventionAccount -> Conta do Convenio
+SummaryOfTransfer -> Resumo Financeiro do Contrato de Repasse
+
+AgreementDetails:
+    AgreementNumber -> Numero do Convenio
+    Situation -> Situação
+    OriginalNumber -> Numero Original
+    AgreementObject -> Objeto Convenio
+    SuperiorOrgan -> Orgão Superior
+    Grantor -> Concedente
+    Convenient -> Conveniente
+    AgreementValue -> Valor do Convenio
+    LeftValue -> Valor Liberado
+    Publication -> Publicação
+    AgreementEnd -> Fim do Convenio
+    CounterpartValue -> Valor de Contrapartida
+
+CashierSummary:
+    contract -> Contrato
+    SICONV -> SICONV
+    SIAFI -> SIAFI
+    action -> Ação
+    value -> Valor
+    leftValue -> Valor Liberado
+    repassValue -> Valor de Repasse
+    executation -> Execução
+    situation -> Situação
+    lastMeasurement -> Ultimo Medição
+    object -> Objeto
+    contractSituation -> Situação do Contrato

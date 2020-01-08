@@ -1,0 +1,42 @@
+<div class="row ">
+  <div class="input-field col s1">
+  </div>
+  <div class="input-field col s12 m5 l3">
+    <input name="bank_name" {{isset($disabled)? 'disabled' : ''}} value="{{isset($account)? $account->bank_name : ''}}"  type="text" class="validate">
+    <label>Banco do Convênio</label>
+  </div>
+  <div class="input-field col s12 m5 l3">
+    <input name="agency" {{isset($disabled)? 'disabled' : ''}} value="{{isset($account)? $account->agency : ''}}"  type="text" class="validate">
+    <label>Agencia do Convênio</label>
+  </div>
+  <div class="input-field col s12 m5 l3">
+    <input name="account_number" {{isset($disabled)? 'disabled' : ''}} value="{{isset($account)? $account->account_number : ''}}"  type="text" class="validate">
+    <label>Conta do Convênio  </label>
+  </div>
+</div>
+
+
+<div class="row ">
+  <div class="input-field col s1">
+  </div>
+  <div class="input-field col s12 m5 l3">
+    <input name="contracted_bank_name" {{isset($disabled)? 'disabled' : ''}} value="{{isset($account)? $account->contracted_bank_name : ''}}"  type="text" class="validate">
+    <label>Banco da Contratada</label>
+  </div>
+  <div class="input-field col s12 m5 l3">
+    <input name="contracted_agency" {{isset($disabled)? 'disabled' : ''}} value="{{isset($account)? $account->contracted_agency : ''}}"  type="text" class="validate">
+    <label>Agencia da Contratada</label>
+  </div>
+  <div class="input-field col s12 m5 l3">
+    <input name="contracted_account" {{isset($disabled)? 'disabled' : ''}} value="{{isset($account)? $account->contracted_account : ''}}"type="text" class="validate">
+    <label>Conta da Contratada</label>
+  </div>
+
+</div>
+<div class="row ">
+  <div class="input-field col s1">
+  </div>
+  <div class="input-field col s12 m5 l3">
+    <input name="pendency" {{isset($disabled)? 'disabled' : ''}} value="{{isset($account)? $account->pendency : ''}}" placeholder="Pendencias" type="text" class="validate">
+    <label>Pendencias</label>
+  </div>
