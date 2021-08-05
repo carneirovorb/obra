@@ -1,4 +1,4 @@
-# Projeto SysAdmin - AMADO engenharia - Ilheus
+# Projeto SysAdmin 
 
 <p>Sistema básico. CRUD de usuarios, CRUD de obras, Gerar Relatorios.</p>
 <p>Models, Controllers, Repositories, Qualquer coisa em Ingles que não seja de facil entendimento, colocar em Doc.txt na pasta raiz do projeto</p>
